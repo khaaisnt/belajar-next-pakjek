@@ -1,11 +1,12 @@
 import Food from "@/components/food";
 import FoodList from "@/components/food/food-list";
+import AddList from "./addFood";
 import AddList from "./addList";
 
 
 const ListPage = () => {
     // membuat data makanan
-    const foods: Food[] = [
+    let foods: Food[] = [
         {
             title: "Soto Ayam",
             price: 15000,
@@ -35,6 +36,7 @@ const ListPage = () => {
             image: "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         }
     ]
+
 
     return (
         <div className="flex flex-wrap w-full">

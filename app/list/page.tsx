@@ -1,7 +1,6 @@
 import Food from "@/components/food";
 import FoodList from "@/components/food/food-list";
 import AddList from "./addFood";
-import AddList from "./addList";
 
 
 const ListPage = () => {

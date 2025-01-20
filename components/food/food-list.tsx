@@ -1,17 +1,14 @@
 "use client";
 import AddList from "@/app/list/addFood";
-import Food from "@/components/food";
+import { Food } from "@/app/list/edit";
 import { useState } from "react";
+import Foods from ".";
 
-type Food = {
-  title: string;
-  description: string;
-  rating: number;
-  price: number;
-  image: string;
+interface FoodListProps {
+  data: Food[];
 }
 
-const FoodList = (myProps: Food) => {
+const FoodList = (myProps: FoodListProps) => {
   const [stateData, setStateData] = useState<Food[]>(myProps.data)
 
 //   fucntion to remove food from list
@@ -40,7 +37,7 @@ const FoodList = (myProps: Food) => {
         {/* map: scanning data di dalam array */}
       {stateData.map((food, index) => (
         <div className="w-full md:w-1/2 p-3 relative" key={`food-${index}`}>
-          <Food
+          <Foods
             title={food.title}
             description={food.description}
             rating={food.rating}

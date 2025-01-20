@@ -10,7 +10,7 @@ type props = {
     image: string
 }
 
-const Food = (myProps: props) => {
+const Foods = (myProps: props) => {
     const [likeCount, setLikeCount] = 
         useState<number>(myProps.rating)
 
@@ -59,4 +59,4 @@ const Food = (myProps: props) => {
     )
 }
 
-export default Food
+export default Foods

@@ -2,7 +2,8 @@
 
 import Modal from "@/components/modal"
 import { FormEvent, useState } from "react"
-import { Food } from "./food-list"
+import { Food } from "./edit"
+
 
 type props = {
     handleAdd: (f: Food) => void
@@ -20,6 +21,7 @@ const AddList = (myProp: props) => {
 
     const handleOpen = () => {
         setShow(true)
+       
     }
 
     const handleClose = () => {

@@ -2,7 +2,7 @@
 
 import Modal from "@/components/modal"
 import { FormEvent, useState } from "react"
-import { Food } from "./food-list"
+import { Food } from "../../components/food/food-list"
 
 type props = {
     handleAdd: (f: Food) => void

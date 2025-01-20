@@ -4,11 +4,11 @@ import Modal from "@/components/modal";
 import { FormEvent, useState } from "react";
 
 type props = {
-  handleChange: (index:number, f: Food) => void;
+  handleChange: (f: Food) => void;
   selectedItem: Food;
 };
 
-const AddList = (myProp: props) => {
+const EditList = (myProp: props) => {
   const [show, setShow] = useState<boolean>(false);
 
   const [title, setTitle] = useState<string>("");
@@ -19,42 +19,42 @@ const AddList = (myProp: props) => {
 
   const handleOpen = () => {
     setShow(true);
+    setTitle(myProp.selectedItem.title);
+    setDescription(myProp.selectedItem.description);
+    setImage(myProp.selectedItem.image);
+    setPrice(myProp.selectedItem.price);
+    setRating(myProp.selectedItem.rating);
   };
 
   const handleClose = () => {
     setShow(false);
   };
-  const handleSubmit = (event: FormEvent) => {
+  const handleChange = (event: FormEvent) => {
     event.preventDefault();
     setShow(false);
-    myProp.handleAdd({
+    myProp.handleChange({
       title: title,
       description: description,
       image: image,
       price: price,
       rating: rating,
     });
-    setTitle("");
-    setPrice(0);
-    setImage("");
-    setDescription("");
-    setRating(0);
   };
 
   return (
     <div>
       <button
         type="button"
-        className="px-4 py-2 bg-lime-500 text-white hover:bg-lime-400 duration-200 rounded-md"
+        className="size-7 flex items-center justify-center bg-sky-500 text-white hover:bg-sky-400 duration-200 rounded-md"
         onClick={() => handleOpen()}
       >
-        Add Item
+        &#9998;
       </button>
       <Modal isShow={show}>
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={(event) => handleChange(event)}>
           {/* MODAL HEADER */}
           <div className="w-full p-3">
-            <h1 className="text-2xl font-semibold">Add Food Item</h1>
+            <h1 className="text-2xl font-semibold">Edit Food Item</h1>
             <span className="text-sm text-slate-500">
               Make sure you fill with corect value
             </span>
@@ -148,4 +148,4 @@ const AddList = (myProp: props) => {
     </div>
   );
 };
-export default AddList;
+export default EditList;

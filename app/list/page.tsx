@@ -1,6 +1,6 @@
-import Food from "@/components/food";
+
 import FoodList from "@/components/food/food-list";
-import AddList from "./addFood";
+import { Food } from "./edit";
 
 const ListPage = () => {
     // membuat data makanan

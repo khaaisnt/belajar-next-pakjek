@@ -1,6 +1,6 @@
 "use client";
 import AddList from "@/app/list/addFood";
-import { Food } from "@/app/list/edit";
+import EditList, { Food } from "@/app/list/edit";
 import { useState } from "react";
 import Foods from ".";
 
@@ -8,50 +8,42 @@ interface FoodListProps {
   data: Food[];
 }
 
-const FoodList = (myProps: FoodListProps) => {
-  const [stateData, setStateData] = useState<Food[]>(myProps.data)
+const FoodList = ({ data }: FoodListProps) => {
+  const [stateData, setStateData] = useState<Food[]>(data);
 
-//   fucntion to remove food from list
-    const handleRemove = (index: number) => {
-        // store list to temp variable
-        const tempList = stateData
-        // remove one item of array
-        tempList.splice(index, 1)
-        // update state of list
-        setStateData([...tempList])
-    };
+  // Function untuk menghapus makanan
+  const handleRemove = (index: number) => {
+    setStateData((prevState) => prevState.filter((_, i) => i !== index));
+  };
 
-    const handleAddData = (f: Food) => {
-      const tempList = stateData
-      tempList.push(f)
-    /* push digunakan untuk menambah item baru pada array */
-      setStateData([...tempList])
-    }
+  // Function untuk menambahkan makanan
+  const handleAddData = (f: Food) => {
+    setStateData((prevState) => [...prevState, f]);
+  };
+
+  // Function untuk mengedit makanan
+  const handleEdit = (index: number, f: Food) => {
+    setStateData((prevState) => prevState.map((item, i) => (i === index ? f : item)));
+  };
 
   return (
     <div>
       <div>
-        <AddList handleAdd={handleAddData}/>
+        <AddList handleAdd={handleAddData} />
       </div>
       <div className="w-full flex flex-wrap">
-        {/* map: scanning data di dalam array */}
-      {stateData.map((food, index) => (
-        <div className="w-full md:w-1/2 p-3 relative" key={`food-${index}`}>
-          <Foods
-            title={food.title}
-            description={food.description}
-            rating={food.rating}
-            price={food.price}
-            image={food.image}
-          />
-          <button className="absolute top-0 right-0 font-semibold text-white bg-red-500 size-9 rounded-full text-lg"
-          onClick={() => handleRemove(index)}
-          >
-            &times;
-          </button>
-        </div>
-      ))}
-    </div>
+        {stateData.map((food, index) => (
+          <div className="w-full md:w-1/2 p-3 relative" key={`food-${index}`}>
+            <Foods {...food} />
+            <button className="absolute top-0 right-0 bg-red-500 text-white font-semibold size-9 rounded-full text-lg" onClick={() => handleRemove(index)}>
+              &times;
+            </button>
+            <div className="absolute top-0 right-10">
+              <EditList index={index} selectedItem={food} handleChange={handleEdit} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

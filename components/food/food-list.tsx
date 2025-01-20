@@ -1,4 +1,5 @@
 "use client";
+import AddList from "@/app/list/addFood";
 import Food from "@/components/food";
 import { useState } from "react";
 
@@ -23,8 +24,19 @@ const FoodList = (myProps: Food) => {
         setStateData([...tempList])
     };
 
+    const handleAddData = (f: Food) => {
+      const tempList = stateData
+      tempList.push(f)
+    /* push digunakan untuk menambah item baru pada array */
+      setStateData([...tempList])
+    }
+
   return (
-    <div className="w-full flex flex-wrap">
+    <div>
+      <div>
+        <AddList handleAdd={handleAddData}/>
+      </div>
+      <div className="w-full flex flex-wrap">
         {/* map: scanning data di dalam array */}
       {stateData.map((food, index) => (
         <div className="w-full md:w-1/2 p-3 relative" key={`food-${index}`}>
@@ -42,6 +54,7 @@ const FoodList = (myProps: Food) => {
           </button>
         </div>
       ))}
+    </div>
     </div>
   );
 };

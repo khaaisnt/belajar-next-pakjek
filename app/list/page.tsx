@@ -1,9 +1,10 @@
 import Food from "@/components/food";
 import FoodList from "@/components/food/food-list";
+import AddList from "./addFood";
 
 const ListPage = () => {
     // membuat data makanan
-    const foods: Food[] = [
+    let foods: Food[] = [
         {
             title: "Soto Ayam",
             price: 15000,
@@ -34,6 +35,7 @@ const ListPage = () => {
         }
     ]
 
+
     return (
         <div className="flex flex-wrap w-full">
             <h1 className="text-3xl mb-2 font-semibold w-full text-center">
@@ -42,17 +44,6 @@ const ListPage = () => {
             <p className="text-sm text-slate-500 mb-4 text-center w-full">
                 Daftar makanan yang tersedia
             </p>
-            {/* {foods.map((food, index) => (
-                <div className="w-full md:w-1/2 p-3" key={`food-${index}`}>
-                    <Food
-                        title={food.title}
-                        description={food.description}
-                        rating={food.rating}
-                        price={food.price}
-                        image={food.image}
-                    />
-                </div>
-            ))} */}
             <FoodList data={foods} />
         </div>
     );

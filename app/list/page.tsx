@@ -1,5 +1,7 @@
 import Food from "@/components/food";
 import FoodList from "@/components/food/food-list";
+import AddList from "./addList";
+
 
 const ListPage = () => {
     // membuat data makanan
@@ -53,6 +55,9 @@ const ListPage = () => {
                     />
                 </div>
             ))} */}
+
+            <AddList />
+
             <FoodList data={foods} />
         </div>
     );
